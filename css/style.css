@@ -1,0 +1,194 @@
+/* 01 RESET CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* 02 VARIAVEIS CSS - CORES */
+:root {
+    --background: #0D192C;
+    --background-card: #15263F;
+
+    --cor-overlay: rgba(0, 255, 248, 0.7); /* CIANO */
+    --cor-destaque: #fff; /* WHITE */
+    --cor-fonte: #8bacd9; /* BLUE 500 */
+    --cor-cripto: #00fff8; /* CIANO */
+    --cor-hr: #2E405A; /* BLUE 800 */
+
+    /* FONT PRESET 1 - TITULO */
+    --fonte-preset-01-peso: 600;
+    --fonte-preset-01-tamanho: 1.375rem;
+    /* FONT PRESET 2 - CORPO */
+    --fonte-preset-02-peso: 300;
+    --fonte-preset-02-tamanho: 1.125rem;
+    /* FONT PRESET 3 - CRIPTOMOEDA */
+    --fonte-preset-03-peso: 600;
+    --fonte-preset-03-tamanho: 1rem;
+    /* FONT PRESET 4 - DATA / AUTOR */
+    --fonte-preset-04-peso: 400;
+    --fonte-preset-04-tamanho: 1rem;
+}
+
+/* 03 CORPO */
+body {
+    font-family: "outfit", "sans-serif";
+    background-color: var(--background);
+    color: var(--cor-destaque);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: color 0.4s ease;
+}
+
+/* 04 CARD */
+.card {
+    width: 100%;
+    max-width: 350px;
+    padding: 24px;
+    background-color: var(--background-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    gap: 24px;
+}
+
+/* 05 CONTEUDO DO CARD */
+.card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* 06 TITULO DO CARD */
+.card-details h1 {
+    font-weight: var(--fonte-preset-01-peso);
+    font-size: var(--fonte-preset-01-tamanho);
+}
+
+/* 07 DESCRIÇÃO DO CARD */
+.card-details p {
+    font-weight: var(--fonte-preset-02-peso);
+    font-size: var(--fonte-preset-02-tamanho);
+    color: var(--cor-fonte);
+}
+
+/* 08 CABEÇALHO DO CARD */
+header {
+    position: relative; /* Relative - Segue o fluxo do documento, mas é possivel reposicionalo com suas propriedades sem alterar os elementos ao redor. Geralmente é usado em um contexto de posicionamento para um elemento filho com o position: absolute.  */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* 09 IMAGEM DO CARD */
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Impede da imagem ficar destorcida, cortando ela de forma inteligente para preencher o espaço. */
+    display: block; /* Remove os espaços extras a baixo da imagem */
+    border-radius: 8px;
+    transition: tranform 0.4s ease-out;
+}
+
+/* 10 SOBREPOSIÇÃO DA IMAGEM */
+.overlay {
+    position: absolute; /* Absolute - É removido completamente do fluxo da página deixando de ocupar espaço na página. O posicionamento deste overlay está determinado pelo o seu ancestral(header) que está com a position relative. */
+    top: 0%;
+    left: 0%;
+    width: 100%; /* Está ocupando 100% do elemento ancestral(header) */
+    height: 100%;
+    background-color: var(--cor-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    opacity: 0%;
+    transition: opacity 0.4s ease;
+}
+
+/* 11 ICONE DE SOBREPOSIÇÃO */
+.icon-link {
+    text-decoration: none;
+    transform: scale(0.8);
+    transition: transform 0.4s ease;
+}
+
+/* 12 EFEITO DE SOBREPOSIÇÃO NA IMAGEM */
+header:hover .overlay {
+    opacity: 1; /* Altera a opacidade do elemento fazendo ele aparecer sobre o banner */
+}
+
+/* 13 EFEITO DO ICONE QUE VAI SOBREPOR A IMAGEM */
+header:hover .icon-link {
+    transform: scale(1); /* Faz que o icone aumente de tamanho enquanto aparece */
+}
+
+/* 14 EFEITO QUE MUDAR AS CORES DAS FONTES BRANCAS */
+/* A pseudo-classe chamada Has aplica um efeito no elemento pai se o elemento dentro dele(filho, neto etc...) atender as condições. */
+/* Neste caso o efeito que será aplicado no body, apenas acontecerá se o header estiver com o efeito hover ativado(mouse sobre o elemento.) e se existe a classe overlay em algum elemento do header. */
+body:has(header:hover .overlay) { 
+    color: var(--cor-cripto);
+}
+
+/* 15 INFORMAÇÕES DO CARD */
+.card-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 16 VALOR */
+#value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--fonte-preset-03-peso);
+    font-size: var(--fonte-preset-03-tamanho);
+    color: var(--cor-cripto);
+}
+
+/* 17 DATA DA POSTAGEM */
+#release {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--fonte-preset-04-peso);
+    font-size: var(--fonte-preset-04-tamanho);
+    color: var(--cor-fonte);
+}
+
+/* 18 LINHA HORIZONTAL */
+hr {
+    color: var(--cor-hr);
+}
+
+/* 19 INFORMAÇÕES DO AUTOR */
+.creator-info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    font-weight: var(--fonte-preset-04-peso);
+    font-size: var(--fonte-preset-04-tamanho);
+}
+
+/* 20 IMAGEM DO AUTOR */
+.creator-info img {
+    width: 33px;
+    border-radius: 100px;
+    border: var(--cor-destaque) 1px solid;
+}
+
+/* 21 DESTAQUE NO NOME DO AUTOR */
+.creator-info span {
+    color: var(--cor-fonte);
+}
